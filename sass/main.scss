@@ -1,1 +1,773 @@
 // main SASS file
+
+/***********************************************
+                COLOUR NOTES
+light blue  $light-blue
+med blue    $med-blue
+dark blue   $dark-blue
+
+light brown $light-brown
+dark brown  $dark-brown
+
+light grey  $light-grey
+dark grey   $dark-grey
+
+                DEFAULTS
+***********************************************/
+
+@import '_variables', '_mixins';
+
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:after,
+*:before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 16px;
+    font-family: $fontstack1;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    font-family: $fontstack2;
+}
+
+ul {
+    list-style: none;
+}
+
+/***********************************************
+                SPECIAL
+***********************************************/
+
+
+
+/***********************************************
+                LAYOUT
+***********************************************/
+.bg-header {
+    background-color: #fff;
+    background-color: $light-blue;
+    color: $dark-grey;
+    border-bottom: 1rem solid $med-blue;
+    border-top: 1rem solid $dark-blue;
+    position: relative;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: -1rem;
+        height: 1rem;
+        width: 30%;
+        background-color: $dark-blue;
+    }
+
+    &:before {
+        left: 0;
+    }
+
+    &:after {
+        right: 0;
+    }
+}
+
+
+.bg-focal {
+    background-color: $light-brown;
+    color: $dark-brown;
+}
+
+.bg-content1 {
+    background-color: #fff;
+    color: $dark-grey;
+    font-weight: 100;
+}
+
+.bg-content2 {
+    background-color: $light-blue;
+    color: $dark-blue;
+    font-weight: 100;
+}
+
+.bg-footer {
+    background-color: #fff;
+    color: $light-grey;
+}
+
+header {
+    width: 400px;
+    /* default min screen width */
+    margin: 0 auto;
+    position: relative;
+
+    h1 {
+        width: 100%;
+        padding: 0 2rem;
+    }
+
+    nav {
+        width: 100%;
+        padding: 2rem 0;
+        @extend .row
+    }
+
+    a {
+        @include flex (100%, 1, 0, center);
+        
+//            flex-basis: 100%;
+//    flex-grow: 1;
+//    flex-shrink: 0;
+//    text-align: center;
+    }
+}
+
+section.focal {
+    width: 400px;
+    /* default */
+    margin: 0 auto;
+}
+
+section.content1 {
+    padding: 2rem 0;
+}
+
+section.content2 {
+    padding: 2rem 0;
+}
+
+.row {
+    @include layout (flex, column, flex-start, stretch);
+
+    .col {
+        flex-basis: 100%;
+        /* mobile default */
+    }
+}
+
+footer {
+    .row {
+        @include layout2 (nowrap, row, space-around, flex-start);
+
+        > * {
+            flex-basis: 50%;
+            padding-bottom: 2rem;
+            border-left: 1px solid $dark-blue;
+            margin-bottom: 2rem;
+
+        }
+
+        &.last-row > * {
+            flex-basis: 100%;
+        }
+
+        .col:first-child {
+            border-left: 0;
+        }
+    }
+
+    padding: 2rem 0;
+}
+
+/***********************************************
+                NAVIGATION
+***********************************************/
+header nav {}
+
+header nav > a {
+    text-align: center;
+    text-decoration: none;
+    color: $dark-grey;
+    letter-spacing: 0.25rem;
+    border: 1px solid $light-grey;
+    border-bottom: none;
+    line-height: 1;
+    background-color: #fff;
+    @include font (1.414rem, 1.0rem 2rem);
+
+    &:hover {
+        font-weight: 700;
+        color: $dark-brown;
+    }
+}
+
+/***********************************************
+                CONTENT
+***********************************************/
+header h1 {
+    color: red;
+    letter-spacing: 0.1rem;
+}
+
+header h1 i.fa-lg {
+    display: block;
+    width: 25%;
+    float: left;
+    font-size: 7rem;
+    line-height: 12.7936rem;
+    color: $light-brown;
+}
+
+header h1 i.fa-lg ~ span {
+    float: right;
+    width: 75%;
+    font-size: 3.998rem;
+    /**
+    2 lines of 3.998 * 1.6 = 12.7936
+    **/
+    padding-left: 1rem;
+    text-align: right;
+
+}
+
+.focal h2 {
+
+    line-height: 1.2;
+
+    @include font (1.999rem, 2rem 2rem 1rem 2rem);
+
+}
+
+.focal .author {
+
+    @include font (1rem, 0.2rem 2rem 2rem);
+}
+
+.content1 h3 {
+
+    @include font (1.999rem, 0.2rem 2rem 1rem);
+}
+
+.content1 h3 i {
+    vertical-align: middle;
+    padding-right: 2rem;
+}
+
+.content1 p {
+
+    @include font (1.414, 0.5rem 2rem 2rem);
+}
+
+.content2 h3 {
+
+    @include font (1.999rem, 1rem 2rem 0.5rem);
+}
+
+.content2 h4 {
+
+    @include font (1.999rem, 1rem 2rem 0rem);
+}
+
+.content2 p {
+
+    @include font (1.414rem, 0.5rem 2rem 1rem);
+}
+
+.content2 li {
+
+    @include font (1.414rem, 0.5rem 2rem);
+}
+
+.content2 span[lang] {
+    position: relative;
+}
+
+.content2 span:hover:after {
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    content: attr(data-country);
+    display: block;
+    padding: 0.2rem 1rem 0.2rem 2rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    height: 2rem;
+    width: auto;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: url(../img/uk-icon.png);
+    background-repeat: no-repeat;
+    background-size: 1.5rem auto;
+    background-position: left center;
+}
+
+.content2 h4 span[lang="sv"]:after {
+    background-image: url(../img/sv-icon.png);
+}
+
+.content2 h4 span[lang="pt"]:after {
+    background-image: url(../img/pt-icon.png);
+}
+
+.content2 h4 span[lang="fr"]:after {
+    background-image: url(../img/fr-icon.png);
+}
+
+.content2 h4 span[lang="no"]:after {
+    background-image: url(../img/no-icon.png);
+}
+
+.content2 h4 span[lang="hi"]:after {
+    background-image: url(../img/hi-icon.png);
+}
+
+.content2 h4 span[lang="es"]:after {
+    background-image: url(../img/es-icon.png);
+}
+
+/***********************************************
+                FOOTER
+***********************************************/
+footer h4 {
+
+    color: $dark-brown;
+    @include font (1.414rem, 0.5rem 2rem);
+}
+
+footer p {
+
+    color: $dark-grey;
+    @include font (1rem, 0.5rem 2rem);
+}
+
+footer .fa-circle {
+    color: $dark-grey;
+}
+
+footer h4[lang=de] {
+    display: block;
+}
+
+footer h4[lang=en],
+footer h4[lang=ar],
+footer h4[lang=ru] {
+    display: none;
+}
+
+/***********************************************
+                MEDIA QUERIES
+***********************************************/
+
+@media all and (min-width:701px) and (max-width:900px) {
+    header {
+        width: 700px;
+        margin: 0 auto;
+        min-height: 8rem;
+
+        &:before,
+        &:after {
+            width: 230px;
+        }
+
+
+
+        h1 {
+            width: 100%;
+            color: $dark-brown;
+        }
+    }
+
+
+    header h1 i.fa-lg {
+        display: inline;
+        color: $dark-brown;
+        vertical-align: baseline;
+        float: none;
+        font-size: 4rem;
+        line-height: 6.3968rem;
+    }
+
+    header h1 i.fa-lg ~ span {
+        float: none;
+        letter-spacing: 0.25rem;
+        font-size: 3.998rem;
+        /**
+        1 lines of 3.998 * 1.6 = 6.3968
+        **/
+        text-align: left;
+    }
+
+    header nav {
+        @include layout3 (row, space-around, center);
+
+        a {
+            flex-basis: 20%;
+            line-height: 2rem;
+            min-height: 6rem;
+            border: none;
+            border-left: 1px solid $light-grey;
+            background-color: #fff;
+            @include font (1rem, 1.0rem);
+
+            &:last-child {
+                border-right: 1px solid $light-grey;
+            }
+        }
+    }
+
+
+
+    section.focal,
+    section.content1,
+    section.content2,
+    footer {
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .content1 .row {
+        /* same as mobile default */
+    }
+
+    .content2 .row {
+        @include layout2(wrap, row, center, flex-start);
+    }
+
+    .content2 .row .col {
+        flex-basis: 50%;
+    }
+
+    footer .row {
+        @include layout2 (nowrap, row, space-around, flex-start);
+    }
+
+    footer .row > * {
+        flex-basis: 50%;
+    }
+
+    footer .row.last-row > * {
+        flex-basis: 100%;
+    }
+
+    section.content2 h4 {
+        font-size: 1.414rem;
+    }
+
+    section.content2 li {
+        font-size: 1.414rem;
+    }
+
+    footer .fa-circle {
+        color: $med-blue;
+    }
+
+    footer .row:first-child .col:last-child {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+    }
+
+    footer h4[lang=ar] {
+        display: block;
+    }
+
+    footer h4[lang=de],
+    footer h4[lang=en],
+    footer h4[lang=ru] {
+        display: none;
+    }
+}
+
+
+
+@media all and (min-width:901px) and (max-width: 1400px) {
+    header {
+        width: 900px;
+        margin: 0 auto;
+
+        &:before,
+        &:after {
+            width: 300px;
+        }
+
+        h1 {
+            width: 100%;
+            color: $dark-blue;
+        }
+    }
+
+    header h1 i.fa-lg {
+        display: inline;
+        color: $dark-blue;
+        vertical-align: baseline;
+        float: none;
+        font-size: 4rem;
+        line-height: 6.3968rem;
+    }
+
+    header h1 i.fa-lg ~ span {
+        float: none;
+        letter-spacing: 0.25rem;
+        font-size: 3.998rem;
+        /**
+        1 lines of 3.998 * 1.6 = 6.3968
+        **/
+        text-align: left;
+    }
+
+    header nav {
+        @include layout3 (row, space-around, center);
+
+        a {
+            flex-basis: 20%;
+            line-height: 2rem;
+            min-height: 2rem;
+            border: none;
+            border-left: 1px solid $light-grey;
+            margin: 1.0rem 0;
+            background-color: #fff;
+            @include font (1rem, 0 1.0rem);
+        }
+
+        a:first-child {
+            border-left: none;
+        }
+    }
+
+    section.focal,
+    section.content1,
+    section.content2,
+    footer {
+        width: 900px;
+        margin: 0 auto;
+    }
+
+    section.focal h2 {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    section.focal p.author {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .content1 .row,
+    .content2 .row,
+    footer .row {
+        @include layout2(wrap, row, space-around, flex-start);
+    }
+
+    .content1 .row .col {
+        @include layout4 (33%, 1, 0);
+    }
+
+    .content2 .row .col {
+        @include layout4 (25%, 1, 0);
+    }
+
+    footer .row .col {
+        flex-basis: 50%;
+    }
+
+    footer .row.last-row {
+        justify-content: flex-start;
+    }
+
+    footer .row.last-row .col {
+        flex-basis: 100%;
+    }
+
+    section.content1 h3 {
+        font-size: 1.999rem;
+        font-weight: 100;
+    }
+
+    section.content1 h3 .fa-2x {
+        font-size: 1.999rem;
+        padding-right: 1rem;
+    }
+
+    section.content2 h4 {
+        font-size: 1.414rem;
+    }
+
+    section.content2 li {
+        font-size: 1.414rem;
+    }
+
+    section.content2 p {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    footer .fa-circle {
+        color: $light-brown;
+    }
+
+    footer h4[lang=ru] {
+        display: block;
+    }
+
+    footer h4[lang=de],
+    footer h4[lang=ar],
+    footer h4[lang=en] {
+        display: none;
+    }
+}
+
+
+@media all and (min-width:1401px) {
+    header {
+        width: 1400px;
+        margin: 0 auto;
+    }
+
+    header:before,
+    header:after {
+        width: 450px;
+
+        h1 {
+            width: 100%;
+            color: $dark-brown;
+        }
+    }
+
+    header h1 i.fa-lg {
+        display: inline;
+        color: $dark-brown;
+        vertical-align: baseline;
+        float: none;
+        font-size: 4rem;
+        line-height: 6.3968rem;
+    }
+
+    header h1 i.fa-lg ~ span {
+        float: none;
+        letter-spacing: 0.25rem;
+        font-size: 3.998rem;
+        /**
+        1 lines of 3.998 * 1.6 = 6.3968
+        **/
+        text-align: left;
+    }
+
+    header nav {
+        @include layout3 (row, space-around, center){
+        width: 100%;
+        padding: 0rem 0;
+        background-color: #fff;
+        };
+        a {
+            flex-basis: 20%;
+            line-height: 2rem;
+            min-height: 2rem;
+            border: none;
+            border-left: 1px solid $light-grey;
+            margin: 1rem 0;
+            background-color: #fff;
+            @include font(1.414rem, 0 1.0rem);
+
+            &:first-child {
+                border-left: none;
+            }
+        }
+    }
+
+    section.focal,
+    section.content1,
+    section.content2,
+    footer {
+        width: 1400px;
+        margin: 0 auto;
+    }
+
+    .content1 .row,
+    .content2 .row,
+    footer .row {
+        @include layout2 (wrap, row, space-evenly, flex-start);
+    }
+
+    .content1 .row .col {
+        @include layout4 (30%, 1, 0);
+    }
+
+    .content2 .row .col {
+        @include layout4 (20%, 1, 0);
+    }
+
+    footer .row .col {
+        flex-basis: 50%;
+    }
+
+    footer .row.last-row {
+        justify-content: flex-start;
+    }
+
+    footer .row.last-row .col {
+        flex-basis: 100%;
+    }
+
+
+    section.focal h2 {
+        font-size: 3.998rem;
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    section.focal p.author {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    section.content1 h3 {
+        font-size: 2.827rem;
+        font-weight: 100;
+    }
+
+    section.content1 h3 .fa-2x {
+        font-size: 2.827rem;
+        padding-right: 1rem;
+        vertical-align: middle;
+    }
+
+    section.content2 h4 {
+        font-size: 1.999rem;
+    }
+
+    section.content2 li {
+        font-size: 1.999rem;
+    }
+
+    section.content2 p {
+        font-size: 1.414rem;
+    }
+
+    footer p {
+        font-size: 1.414rem;
+        letter-spacing: 0.2rem;
+    }
+
+    footer p:last-child {
+        color: $light-grey;
+    }
+
+    footer .fa-circle {
+        color: $med-blue;
+    }
+
+    footer h4[lang=en] {
+        display: block;
+    }
+
+    footer h4[lang=de],
+    footer h4[lang=ar],
+    footer h4[lang=ru] {
+        display: none;
+    }
+
+}

@@ -1,0 +1,61 @@
+//_mixins.scss
+
+
+@mixin layout ($prop1, $prop2, $prop3, $prop4) {
+    display: $prop1;
+    flex-direction: $prop2;
+    justify-content: $prop3;
+    align-items: $prop4;
+}
+
+//display: flex;
+//flex-direction: column;
+///* mobile first */
+//justify-content: flex-start;
+//align-items: stretch;
+
+
+@mixin flex ($prop1, $prop2, $prop3, $prop4) {
+
+    flex-basis: $prop1;
+    flex-grow: $prop2;
+    flex-shrink: $prop3;
+    text-align: $prop4;
+   
+}
+
+//   display: flex;
+//    flex-direction: column;
+//    justify-content: flex-start;
+//    align-items: stretch;
+
+@mixin layout2($prop1, $prop2, $prop3, $prop4) {
+
+    flex-wrap: $prop1;
+    flex-direction: $prop2;
+    justify-content: $prop3;
+    align-items: $prop4;
+}
+
+@mixin layout3($prop1, $prop2, $prop3) {
+
+    flex-direction: $prop1;
+    justify-content: $prop2;
+    align-items: $prop3;
+    @content;
+}
+
+@mixin layout4($prop1, $prop2, $prop3) {
+
+    flex-basis: $prop1;
+    flex-grow: $prop2;
+    flex-shrink: $prop3;
+}
+
+@mixin font($prop1, $prop2) {
+    font-size: $prop1;
+    padding: $prop2;
+}
+
+
+
