@@ -188,7 +188,7 @@ header nav > a:hover {
                 CONTENT
 ***********************************************/
 header h1 {
-  color: red;
+  color: $dark-brown;
   letter-spacing: 0.1rem;
 }
 
